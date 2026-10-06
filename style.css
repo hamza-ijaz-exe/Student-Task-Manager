@@ -196,3 +196,7 @@ h1 {
   border-color: rgba(0, 240, 255, 0.6);
   color: #00f0ff;
 }
+.delete-btn:hover {
+  border-color: rgba(244, 63, 94, 0.7);
+  color: #fb7185;
+}

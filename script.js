@@ -53,11 +53,15 @@ filterButtons.forEach((btn) => {
     });
 });
 
-function deleteTask(id) {
-    tasks = tasks.filter((t) => t.id !== id);
-    saveTasks();
-    renderTasks();
-}
+// TODO: Delete task feature goes here.
+// To re-implement: add a delete button in renderTasks() with the task's
+// data-id, then filter it out of the tasks array, call saveTasks() and
+// renderTasks(). Example:
+//   function deleteTask(id) {
+//       tasks = tasks.filter((t) => t.id !== id);
+//       saveTasks();
+//       renderTasks();
+//   }
 
 // TODO: Checkmark button feature goes here.
 // The complete/toggle button is rendered in renderTasks() below but is
@@ -111,15 +115,12 @@ function renderTasks() {
         completeBtn.title = "Mark as complete";
         completeBtn.textContent = "✓";
 
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "delete-btn";
-        deleteBtn.dataset.id = task.id;
-        deleteBtn.title = "Delete task";
-        deleteBtn.textContent = "🗑";
-        deleteBtn.addEventListener("click", () => deleteTask(task.id));
+        // TODO: Delete button goes here (feature removed).
+        // To re-implement: create a button with class "delete-btn", set its
+        // data-id to task.id, and attach a click listener that calls
+        // deleteTask(task.id) — see the deleteTask stub commented out above.
 
         actions.appendChild(completeBtn);
-        actions.appendChild(deleteBtn);
 
         card.appendChild(title);
         card.appendChild(desc);

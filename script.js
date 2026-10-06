@@ -30,6 +30,12 @@ function createId() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
 
+function deleteTask(id) {
+    tasks = tasks.filter((t) => t.id !== id);
+    saveTasks();
+    renderTasks();
+}
+
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = taskTitleInput.value.trim();
@@ -52,16 +58,6 @@ filterButtons.forEach((btn) => {
         renderTasks();
     });
 });
-
-// TODO: Delete task feature goes here.
-// To re-implement: add a delete button in renderTasks() with the task's
-// data-id, then filter it out of the tasks array, call saveTasks() and
-// renderTasks(). Example:
-//   function deleteTask(id) {
-//       tasks = tasks.filter((t) => t.id !== id);
-//       saveTasks();
-//       renderTasks();
-//   }
 
 // TODO: Checkmark button feature goes here.
 // The complete/toggle button is rendered in renderTasks() below but is
@@ -115,12 +111,14 @@ function renderTasks() {
         completeBtn.title = "Mark as complete";
         completeBtn.textContent = "✓";
 
-        // TODO: Delete button goes here (feature removed).
-        // To re-implement: create a button with class "delete-btn", set its
-        // data-id to task.id, and attach a click listener that calls
-        // deleteTask(task.id) — see the deleteTask stub commented out above.
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-btn";
+        deleteBtn.dataset.id = task.id;
+        deleteBtn.textContent = "🗑";
+        deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
         actions.appendChild(completeBtn);
+        actions.appendChild(deleteBtn);
 
         card.appendChild(title);
         card.appendChild(desc);
